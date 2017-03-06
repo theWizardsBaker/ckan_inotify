@@ -7,8 +7,8 @@ require 'curb'
 def load_users(file = '/var/www/exports/xml/users.xml')
 
 	# setup static vars
-	user_url = 'http://data.missouriepscor.org/api/3/action/user_list'
-	create_url = 'http://data.missouriepscor.org/api/3/action/user_create'
+	user_url = 'https://data.missouriepscor.org/api/3/action/user_list'
+	create_url = 'https://data.missouriepscor.org/api/3/action/user_create'
 	
 	# if we can get the file
 	if FileTest.exists?(file)
@@ -41,7 +41,7 @@ def load_users(file = '/var/www/exports/xml/users.xml')
 					ckan_response = Curl.post(create_url, usr_hash.to_json) do |curl|
 						curl.headers['Accept'] = 'application/json'
 						curl.headers['Content-Type'] = 'application/json'
-						curl.headers['Authorization'] = '72204c9b-3858-4023-b521-0dcf1454066c'
+						curl.headers['Authorization'] = 'f265f0a7-1268-43d0-a265-41e57ce24370'
 						curl.verbose=true
 						curl.on_failure do |response, err|
 							STDERR.puts "Could not load #{usr_hash[:name]}: #{response.response_code} #{err.inspect}"
@@ -50,6 +50,10 @@ def load_users(file = '/var/www/exports/xml/users.xml')
 					
 				end 
 			end 
+		else
+			STDERR.puts "Could not get url: '#{user_url}'"
 		end
+	else
+		STDERR.puts "Could not open file"
 	end
 end

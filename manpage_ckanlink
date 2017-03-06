@@ -1,0 +1,39 @@
+.\" Manpage for ckan_link.
+.\" Contact letourneaujj@umsystem.edu to correct errors or typos.
+.TH ckan_link 1 "03 November 2016" "1.0" "ckan_link man page"
+.SH NAME
+ckan_link -- generates a link for use on the data.missouriepscor.org website
+.SH SYNOPSIS
+ckan_link [
+.B -o
+.I output-file
+|
+.B -f
+.I output-destination
+|
+.B -l
+.I link-name
+] [
+.I file1 file2...
+]
+.SH DESCRIPTION
+The ckan_link utility generates a link for use with data.missouriepscor.org. It links to files in your
+.I /array/publish
+directory to share with the data.missouriepscor.org ftp server.
+.SH OPTIONS
+.TP
+.B file(s)
+ one or more files to generate links to.
+.TP
+.B "-o, --output-file"
+ do not create a 'published_links' output file.
+.TP
+.BI "-l " NAME ", --link-name"=NAME
+ linked file's name. Changes the name of the downloadable file (does not affect the original). If supplying multiple files to the ckan_link utility, each will be renamed to this value (be careful).
+.TP
+.BI "-d " DIR ", --ouput-dest"=DIR
+ the directory location the 'published_links' file should be written to. By default it will be written to the directory the supplied file was written to.
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Justin Le Tourneau (letourneaujj@umsystem.edu)
